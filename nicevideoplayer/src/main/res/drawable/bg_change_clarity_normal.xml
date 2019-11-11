@@ -11,9 +11,4 @@
 <!--        android:left="12dp"-->
 <!--        android:right="12dp"-->
 <!--        android:top="6dp" />-->
-    <padding
-        android:bottom="20dp"
-        android:left="8dp"
-        android:right="8dp"
-        android:top="20dp" />
 </shape>

@@ -66,12 +66,11 @@ public class ChangeClarityDialog extends Dialog {
         for (int i = 0; i < items.size(); i++) {
 //            TextView itemView = (TextView) LayoutInflater.from(getContext())
 //                    .inflate(R.layout.item_change_clarity, mLinearLayout, false);
-            View view = LayoutInflater.from(getContext())
+            RelativeLayout mRlRoot = (RelativeLayout) LayoutInflater.from(getContext())
                     .inflate(R.layout.item_change_clarity, mLinearLayout, false);
-            RelativeLayout mRlRoot= (RelativeLayout) view.findViewById(R.id.rl_root);
             mRlRoot.setBackgroundColor(getContext().getResources().getColor(R.color.dialog_bg_2));
-            TextView itemView = (TextView) view.findViewById(R.id.tv_content);
-            View viewLine = view.findViewById(R.id.view_line);
+            TextView itemView = (TextView) mRlRoot.findViewById(R.id.tv_content);
+            View viewLine = mRlRoot.findViewById(R.id.view_line);
             itemView.setTag(i);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,14 +99,13 @@ public class ChangeClarityDialog extends Dialog {
             }
             itemView.setText(items.get(i));
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)
-                    itemView.getLayoutParams();
+                    mRlRoot.getLayoutParams();
 //            params.topMargin = (i == 0) ? 0 : NiceUtil.dp2px(getContext(), 16f);
 //            mLinearLayout.addView(itemView, params);
 //            params.leftMargin = NiceUtil.dp2px(getContext(),10f);
             params.setMargins(NiceUtil.dp2px(getContext(),5f),0,
-                    NiceUtil.dp2px(getContext(),5f)
-                    ,0);
-            mLinearLayout.addView(view, params);
+                    NiceUtil.dp2px(getContext(),5f),NiceUtil.dp2px(getContext(),20f));
+            mLinearLayout.addView(mRlRoot, params);
         }
     }
 

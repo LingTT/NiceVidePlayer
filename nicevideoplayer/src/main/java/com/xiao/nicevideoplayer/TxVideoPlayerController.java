@@ -146,6 +146,10 @@ public class TxVideoPlayerController
         this.setOnClickListener(this);
     }
 
+    public ChangeClarityDialog getClarityDialog() {
+        return mClarityDialog;
+    }
+
     @Override
     public void setTitle(String title) {
         mTitle.setText(title);
@@ -212,13 +216,12 @@ public class TxVideoPlayerController
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
 //            mClarity.setVisibility(View.VISIBLE);
             mClarity.setText(mFloat + "X");
-
             mDialogList = new ArrayList<>();
             for (int i = 0; i < speedArr.length; i++) {
-                mDialogList.add(speedArr[i]+"");
+                mDialogList.add(speedArr[i]+"X");
             }
 
-            defaultClarityIndex = mDialogList.indexOf(mFloat+"");
+//            defaultClarityIndex = mDialogList.indexOf(mFloat+"X");
             mClarityDialog = new ChangeClarityDialog(mContext);
             mClarityDialog.setOnClarityCheckedListener(this);
 //            mClarity.setOnClickListener(new View.OnClickListener() {
@@ -444,7 +447,7 @@ public class TxVideoPlayerController
             }
         } else if (v == mClarity) {
             setTopBottomVisible(false); // 隐藏top、bottom
-            defaultClarityIndex = mDialogList.indexOf(mFloat+"");
+            defaultClarityIndex = mDialogList.indexOf(mFloat+"X");
             Log.d("TAG","============>"+mFloat+"and"+mDialogList.toString()+"<===============");
             Log.d("TAG","============>"+defaultClarityIndex+"<===============");
             mClarityDialog.setClarityGrade(mDialogList, defaultClarityIndex);
@@ -452,8 +455,8 @@ public class TxVideoPlayerController
         } else if (v == mRetry) {
             mNiceVideoPlayer.restart();
         } else if (v == mReplay) {
-//            mRetry.performClick();
-            mNiceVideoPlayer.restart();
+            mRetry.performClick();
+//            mNiceVideoPlayer.restart();
         } else if (v == mShare) {
             Toast.makeText(mContext, "分享", Toast.LENGTH_SHORT).show();
         } else if (v == this) {
